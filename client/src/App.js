@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import httpClient from './httpClient'
-import NavBar from './NavBar';
+// import NavBar from './NavBar';      
 import Home from './views/Home'
 import SignUp from './views/SignUp';
 import LogIn from './views/LogIn';
