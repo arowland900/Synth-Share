@@ -1,58 +1,25 @@
 import React from 'react';
+import httpClient from '../httpClient'
 
-// var release = document.querySelector('#release')
-// var attack = document.querySelector('#attack')
-// var waveformSelect = document.querySelector('#waveform-select')
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)()
 var oscillator = audioCtx.createOscillator();
-var gainNode = audioCtx.createGain();
 
-// function release(time) {
-//   oscillator.stop(time);
-
-//   //
-//   console.log("Stop playing!")
-// }
-
-// // event listeners for all keys:
-// keys.forEach(function(key) {
-//   key.addEventListener('mousedown', function() {
-//     this.freq = Number(this.dataset.freq)
-//     new Note(this.freq)
-//   })
-
-//  
-// })
 
 
 
 class VIP extends React.Component {
-
-    // // var keyboard = document.querySelector('#keyboard')
-// var keys = document.querySelectorAll('#keyboard button.key')
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            attackValue: 20,
-            releaseValue: 20,
-            waveformSelect: 'square'
-            // attack: ,
-            // release: ,
-            // waveformSelect: 
-        };
-
-        this.handleClick = this.handleClick.bind(this);
-    }
+    state = {
+        attackValue: 20,
+        decayValue: 20,
+        sustainValue: 20,
+        releaseValue: 20,
+        waveformSelect: 'sine'
+    };
 
     Note(freq) {
         // adsr:
         console.log(`Playing at ${freq} hz`);
-        let { attackValue, releaseValue, waveformSelect } = this.state;
-        let attack = (attackValue / 20);
-        let release = (releaseValue / 20);
-        console.log(`Attack: ${attack}, Release: ${release}`);
-        console.log(waveformSelect)
+        let { attackValue, decayValue, sustainValue, releaseValue, waveformSelect } = this.state;
       
         let audioCtx = new (window.AudioContext || window.webkitAudioContext)()
       
@@ -67,41 +34,39 @@ class VIP extends React.Component {
         oscillator.start()
         console.log(oscillator.frequency.value)
       
-        let attackTime = (this.state.attackValue)
-        console.log(attackTime)
-        let releaseTime = (this.state.releaseValue)
-        let initialGain = vca.gain.value
-        let boostRate = (0.01 / (attackTime))
-        let attenuationRate = (0.01 / (releaseTime))
+        let boostRate = (0.01 / (attackValue))
+        let attenuationRate = (0.01 / (decayValue))
       
         const fadeIn = () => {
           let fadeInInterval = setInterval(function() {
             vca.gain.value += boostRate
+            console.log(vca.gain.value)
           }, 10)
       
           setTimeout(function() {
             clearInterval(fadeInInterval)
             fadeOut()
-          }, attackTime * 1000)
+          }, attackValue * 100)
         }
       
         fadeIn()
       
         const fadeOut = () => {
           let fadeOutInterval = setInterval(function() {
+            // while(vca.gain.value > sus)
+            
             vca.gain.value -= attenuationRate
           }, 10)
       
-          oscillator.stop(releaseTime)
+          oscillator.stop(decayValue)
       
           setTimeout(function() {
             console.log("Ending Gain:", vca.gain.value)
             clearInterval(fadeOutInterval)
             audioCtx.close()
-          }, releaseTime * 1000)
+          }, decayValue * 100)
         }
-      
-        fadeOut()    
+        
     }
 
     handleChange = (e) => {
@@ -124,18 +89,35 @@ class VIP extends React.Component {
             <select onChange={this.handleChange} name="waveformSelect" id="waveform-select">
                 <option value="sine">Sine</option>
                 <option value="triangle">Triangle</option>
+                <option value="square">Square</option>
                 <option value="sawtooth">Sawtooth</option>
-                <option defaultValue="square">Square</option>
             </select>
 
             <div className="envelope">
-               
                 Attack:
                 <input 
                     className="attack" 
                     type="range"
                     name="attackValue"
                     value={this.state.attackValue} 
+                    onChange={this.handleChange}
+                    step="1"
+                />
+                Decay:
+                <input 
+                    className="decay" 
+                    type="range"
+                    name="decayValue"
+                    value={this.state.decayValue} 
+                    onChange={this.handleChange}
+                    step="1"
+                />
+                Sustain:
+                <input 
+                    className="sustain" 
+                    type="range"
+                    name="sustainValue"
+                    value={this.state.sustainValue} 
                     onChange={this.handleChange}
                     step="1"
                 />
@@ -157,9 +139,6 @@ class VIP extends React.Component {
                 <button onClick={this.handleClick} className="key" data-freq="350">SOUND</button>
                 <button onClick={this.handleClick} className="key" data-freq="400">SOUND</button>
             </div>
-
-            {/* <script src="js/app.js" charSet="utf-8"></script> */}
-
         </div>
 
         )
