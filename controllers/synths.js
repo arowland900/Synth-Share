@@ -26,16 +26,17 @@ module.exports = {
         })
     },
 
-    // update an existing synth
+    // update an existing user
 	update: (req, res) => {
-		Synth.findById(req.params.id, (err, synth) => {
+		// User.findById(req.params.id, (err, user) => {
 			// if(!req.body.password) delete req.body.password
-			// Object.assign(req.user, req.body) 
+			Object.assign(req.synth, req.body)
 			req.synth.save((err, updatedSynth) => {
 				if(err) return res.json({message: "ERROR", payload: null, code: err.code})
-				res.json({ message: "SUCCESS", payload: updatedSynth })
+				const token = signToken(updatedSynth)
+				res.json({ message: "SUCCESS", payload: token })
 			})
-		})
+		// })
 	},
 
 	// delete an existing synth
