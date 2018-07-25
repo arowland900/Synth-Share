@@ -28,23 +28,20 @@ module.exports = {
 
     // update an existing user
 	update: (req, res) => {
-		// User.findById(req.params.id, (err, user) => {
-			// if(!req.body.password) delete req.body.password
-			Object.assign(req.synth, req.body)
-			req.synth.save((err, updatedSynth) => {
-				if(err) return res.json({message: "ERROR", payload: null, code: err.code})
-				const token = signToken(updatedSynth)
-				res.json({ message: "SUCCESS", payload: token })
+        console.log('HITT')
+		Synth.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedSynth) => {
+            if(err) return res.json({ message: "ERROR", payload: null })
+            res.json({ message: "SUCCESS", payload: updatedSynth })
+			
 			})
-		// })
 	},
 
 	// delete an existing synth
 	destroy: (req, res) => {
 		// User.findByIdAndRemove(req.params.id, (err, user) => {
-		req.synth.remove((err, synth) => {
+		Synth.findByIdAndRemove(req.params.id, (err, deletedSynth) => {
 			if(err) return res.json({message: "ERROR", payload: null, code: err.code})
-			res.json({ message: "SUCCESS", payload: synth })
+			res.json({ message: "SUCCESS", payload: deletedSynth })
 		})
 		// })
 	},

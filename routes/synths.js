@@ -8,8 +8,8 @@ synthsRouter.get('/', synthsCtrl.index)
 synthsRouter.get('/:id', synthsCtrl.show)
 
 synthsRouter.use(verifyToken)
+synthsRouter.patch('/:id', synthsCtrl.update)
 synthsRouter.post('/', synthsCtrl.create)
-// synthsRouter.patch('/me', synthsCtrl.update)
-// synthsRouter.delete('/me', synthsCtrl.destroy)
+synthsRouter.delete('/:id', synthsCtrl.destroy)
 
 module.exports = synthsRouter
