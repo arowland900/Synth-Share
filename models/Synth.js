@@ -4,7 +4,8 @@ const
 		name: { type: String },
 		attack: { type: Number, required: true },
 		decay: { type: Number, required: true },
-		waveform: { type: String, required: true }
+		waveform: { type: String, required: true },
+		_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 	})
 
 

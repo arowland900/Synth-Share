@@ -38,9 +38,9 @@ class App extends Component {
 					<Route path='/logout' render={((routeProps) => {
 						return <LogOut { ...routeProps } onLogOutSuccess={this.onLogOutSuccess.bind(this)} />
 					})} />
-					<Route path='/vip' render={(() => {
+					<Route path='/vip' render={((routeProps) => {
 						return this.state.currentUser
-							? <VIP />
+							? <VIP {...routeProps} />
 							: <Redirect to="/login" />
 					})} />
 					<Route exact path='/' component={Home} />
