@@ -6,6 +6,8 @@ class Settings extends React.Component {
         name: '', 
         email: '',
         password: ''
+        // filter: ''
+
     }
 
     componentDidMount() {

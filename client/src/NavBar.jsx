@@ -4,19 +4,20 @@ import { Link } from 'react-router-dom';
 const NavBar = (props) => {
     return (
         <div className="NavBar">
-            <Link to="/">Home</Link>
+            <Link className="NavItem" to="/">Home</Link>
             {props.currentUser
                 ? (
                     <Fragment>
-                        <Link to="/logout">Log Out</Link>
-                        <Link to="/vip">VIP</Link>
-                        <Link to="/settings">Settings</Link>
+                        <Link className="NavItem" to="/create">Create</Link>
+                        <Link className="NavItem" to="/mysynths">My Synths</Link>
+                        <Link className="NavItem" to="/settings">Settings</Link>
+                        <Link className="NavItem" to="/logout">Log Out</Link>
                     </Fragment>
                 )
                 : (
                     <Fragment>
-                        <Link to="/login">Log In</Link>
-                        <Link to="/signup">Sign Up</Link>
+                        <Link className="NavItem" to="/login">Log In</Link>
+                        <Link className="NavItem" to="/signup">Sign Up</Link>
                     </Fragment>
                 )
             }

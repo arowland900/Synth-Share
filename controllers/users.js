@@ -41,18 +41,6 @@ module.exports = {
 		// })
 	},
 
-	// update: (req, res) => {
-	// 	if (!req.body.password) delete req.body.password;
-	// 	if (!req.body.email) delete req.body.email;
-	// 	if (!req.body.name) delete req.body.name;
-	// 	Object.assign(req.user, req.body)
-	// 	req.user.save((err, updatedUser) => {
-	// 		if(err) return res.json({ message: "ERROR", payload: null, code: err.code })
-	// 		const token = signToken(updatedUser)
-	// 		res.json({ message: "SUCCESS", payload: { updatedUser, token} })
-	// 	})
-	// },
-
 	// delete an existing user
 	destroy: (req, res) => {
 		// User.findByIdAndRemove(req.params.id, (err, user) => {

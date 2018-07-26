@@ -4,7 +4,7 @@ import httpClient from '../httpClient'
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)()
 var oscillator = audioCtx.createOscillator();
 
-class VIP extends React.Component {
+class Create extends React.Component {
     state = {
         attack: 20,
         decay: 20,
@@ -94,7 +94,8 @@ class VIP extends React.Component {
         
         return (
         <div>
-            <h3>WaveForm:</h3>
+            <h1>Create a New Synth Here</h1>
+            <h4>WaveForm:</h4>
             <form onChange={this.handleChange} onSubmit={this.handleFormSubmit}>
                 <select  name="waveform" id="waveform-select">
                     <option value="sine">Sine</option>
@@ -153,4 +154,4 @@ class VIP extends React.Component {
     }
 }
 
-export default VIP;
+export default Create;

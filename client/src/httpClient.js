@@ -18,6 +18,10 @@ httpClient.getCurrentUser = function() {
     else return null
 }
 
+httpClient.getSynths = function() {
+    return null 
+}
+
 httpClient.signUp = function(userInfo){
     return this({ method: 'post', url: '/api/users', data: userInfo })
         .then((serverResponse) => {

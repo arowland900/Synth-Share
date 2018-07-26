@@ -5,15 +5,17 @@ import NavBar from './NavBar';
 import Home from './views/Home'
 import SignUp from './views/SignUp';
 import LogIn from './views/LogIn';
-import VIP from './views/VIP';
+import Create from './views/Create';
 import LogOut from './views/LogOut';
 import Settings from './views/Settings';
+import MySynths from './views/MySynths';
 
 
 class App extends Component {
 
 	state = {
-		currentUser: httpClient.getCurrentUser()
+		currentUser: httpClient.getCurrentUser(),
+		allSynths: 'hi'
 	}
 
 	onAuthSuccess() {
@@ -46,9 +48,14 @@ class App extends Component {
 							? <Settings { ...routeProps } onDeleteSuccess={this.onLogOutSuccess.bind(this)} />
 							: <Redirect to="/login" />
 					})} />
-					<Route path='/vip' render={((routeProps) => {
+					<Route path='/mysynths' render={((routeProps) => {
 						return this.state.currentUser
-							? <VIP {...routeProps} />
+							? <MySynths { ...routeProps }  />
+							: <Redirect to="/login" />
+					})} />
+					<Route path='/create' render={((routeProps) => {
+						return this.state.currentUser
+							? <Create {...routeProps} />
 							: <Redirect to="/login" />
 					})} />
 					<Route exact path='/' component={Home} />
