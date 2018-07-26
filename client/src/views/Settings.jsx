@@ -3,46 +3,68 @@ import httpClient from '../httpClient';
 
 class Settings extends React.Component {
     state = {
-		fields: { name: '', email: '', password: '' }
-	}
+        name: '', 
+        email: '', 
+        password: ''
+    }
 
-	onInputChange(evt) {
-		this.setState({
-			fields: {
-				...this.state.fields,
-				[evt.target.name]: evt.target.value
-			}
-		})
-	}
+    componentDidMount() {
+        let currentUser = httpClient.getCurrentUser();
+        let { name, email } = currentUser;
+        this.setState({ name, email });
+    }
+
+	// onInputChange(evt) {
+	// 	this.setState({
+	// 		fields: {
+	// 			...this.state.fields,
+	// 			[evt.target.name]: evt.target.value
+	// 		}
+	// 	})
+    // }
+
+    handleChange = (e) => {
+        e.preventDefault();
+        this.setState({ [e.target.name]: e.target.value });
+    }
 
 	onFormSubmit(evt) {
 		evt.preventDefault()
-		console.log(this.state.fields)
-		httpClient.editUser(this.state.fields).then((user) => {
-			this.setState({ name: '', email: '', password: '' })
-			if(user) {
-				
-				this.props.history.push('/')
-			}
+		httpClient.editUser(this.state).then((user) => {
+            // debugger
+            let { name, email } = user;
+			this.setState({ name, email })
 		})
-	}
+    }
+    
+    onButtonClick(){
+        httpClient.delete()
+        this.props.onDeleteSuccess()
+        this.props.history.push('/')
+    }
+    
+    // 
     render(){
-
-
+        let { name, email } = this.state;
+        console.log(this.state)
         return (
             <div className="Settings">
 			<div className="row">
 				<div className="column column-33 column-offset-33">
+                    {/* <h1>{this.state.fields.name}</h1> */}
 					<h1>Edit Info</h1>
 					<form
-						onChange={this.onInputChange.bind(this)}
+						// onChange={this.onInputChange.bind(this)}
 						onSubmit={this.onFormSubmit.bind(this)}
 					>
-						<input type="text" placeholder="Name" name="name" autoComplete="off" />
-						<input type="text" placeholder="Email" name="email" autoComplete="off" />
+						<input type="text" placeholder="Name" name="name" autoComplete="off" value={name} onChange={this.handleChange} />
+						<input type="text" placeholder="Email" name="email" autoComplete="off" value={email} onChange={this.handleChange} />
 						<input type="password" placeholder="Password" name="password" autoComplete="off" />
 						<button>Edit Info</button>
 					</form>
+                    <form >
+                        <button onClick={this.onButtonClick.bind(this)}>Delete User</button>
+                    </form>
 				</div>
 			</div>
 		</div>

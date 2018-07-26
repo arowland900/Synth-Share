@@ -44,6 +44,7 @@ module.exports = {
 	// delete an existing user
 	destroy: (req, res) => {
 		// User.findByIdAndRemove(req.params.id, (err, user) => {
+		// if(req.body.password )
 		req.user.remove((err, deletedUser) => {
 			if(err) return res.json({message: "ERROR", payload: null, code: err.code})
 			// const token = signToken(deletedUser)

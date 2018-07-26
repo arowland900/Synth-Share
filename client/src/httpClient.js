@@ -39,12 +39,23 @@ httpClient.editUser = function(userInfo){
             if(serverResponse.data.message === "SUCCESS") {
                 const token = serverResponse.data.payload
                 this.defaults.headers.common.token = this.setToken(token)
-                return jwtDecode(token)
+                let decoded = jwtDecode(token);
+                debugger
+                return decoded
             }
             else {
                 return false 
             }
         })
+}
+
+httpClient.delete = function(userInfo){
+    return this({ method: 'delete', url: '/api/users/me', data: userInfo })
+    .then((serverResponse) => {
+        if(serverResponse.data.message === "SUCCESS"){
+            localStorage.clear
+        }
+    })
 }
 
 httpClient.logIn = function(credentials){

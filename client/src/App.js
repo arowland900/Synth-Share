@@ -24,6 +24,8 @@ class App extends Component {
 		this.setState({ currentUser: null })
 	}
 
+	
+
 
 	render() {
 		return (
@@ -41,7 +43,7 @@ class App extends Component {
 					})} />
 					<Route path='/settings' render={((routeProps) => {
 						return this.state.currentUser
-							? <Settings { ...routeProps } />
+							? <Settings { ...routeProps } onDeleteSuccess={this.onLogOutSuccess.bind(this)} />
 							: <Redirect to="/login" />
 					})} />
 					<Route path='/vip' render={((routeProps) => {
