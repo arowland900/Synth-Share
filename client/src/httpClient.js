@@ -40,7 +40,7 @@ httpClient.editUser = function(userInfo){
                 const token = serverResponse.data.payload
                 this.defaults.headers.common.token = this.setToken(token)
                 let decoded = jwtDecode(token);
-                debugger
+
                 return decoded
             }
             else {
@@ -53,7 +53,7 @@ httpClient.delete = function(userInfo){
     return this({ method: 'delete', url: '/api/users/me', data: userInfo })
     .then((serverResponse) => {
         if(serverResponse.data.message === "SUCCESS"){
-            localStorage.clear
+            localStorage.clear()
         }
     })
 }

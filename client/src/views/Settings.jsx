@@ -4,7 +4,7 @@ import httpClient from '../httpClient';
 class Settings extends React.Component {
     state = {
         name: '', 
-        email: '', 
+        email: '',
         password: ''
     }
 
@@ -33,9 +33,12 @@ class Settings extends React.Component {
 		httpClient.editUser(this.state).then((user) => {
             // debugger
             let { name, email } = user;
-			this.setState({ name, email })
+            this.setState({ name, email })
+            this.props.history.push('/')
 		})
     }
+
+    
     
     onButtonClick(){
         httpClient.delete()
@@ -45,7 +48,7 @@ class Settings extends React.Component {
     
     // 
     render(){
-        let { name, email } = this.state;
+        let { name, email, password } = this.state;
         console.log(this.state)
         return (
             <div className="Settings">
@@ -59,7 +62,7 @@ class Settings extends React.Component {
 					>
 						<input type="text" placeholder="Name" name="name" autoComplete="off" value={name} onChange={this.handleChange} />
 						<input type="text" placeholder="Email" name="email" autoComplete="off" value={email} onChange={this.handleChange} />
-						<input type="password" placeholder="Password" name="password" autoComplete="off" />
+						<input type="password" placeholder="Password" name="password" autoComplete="off" value={password} onChange={this.handleChange} />
 						<button>Edit Info</button>
 					</form>
                     <form >
