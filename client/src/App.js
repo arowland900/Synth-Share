@@ -7,6 +7,7 @@ import SignUp from './views/SignUp';
 import LogIn from './views/LogIn';
 import VIP from './views/VIP';
 import LogOut from './views/LogOut';
+import Settings from './views/Settings';
 
 
 class App extends Component {
@@ -37,6 +38,11 @@ class App extends Component {
 					}} />
 					<Route path='/logout' render={((routeProps) => {
 						return <LogOut { ...routeProps } onLogOutSuccess={this.onLogOutSuccess.bind(this)} />
+					})} />
+					<Route path='/settings' render={((routeProps) => {
+						return this.state.currentUser
+							? <Settings { ...routeProps } />
+							: <Redirect to="/login" />
 					})} />
 					<Route path='/vip' render={((routeProps) => {
 						return this.state.currentUser

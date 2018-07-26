@@ -31,9 +31,10 @@ class VIP extends React.Component {
         oscillator.start()
         console.log(oscillator.frequency.value)
       
-        let boostRate = (0.01 / (attack))
+        let boostRate = (0.01 / (attack + 1))
         let attenuationRate = (0.01 / (decay))
       
+        console.log(attack)
         const fadeIn = () => {
           let fadeInInterval = setInterval(function() {
             vca.gain.value += boostRate

@@ -10,6 +10,7 @@ const NavBar = (props) => {
                     <Fragment>
                         <Link to="/logout">Log Out</Link>
                         <Link to="/vip">VIP</Link>
+                        <Link to="/settings">Settings</Link>
                     </Fragment>
                 )
                 : (

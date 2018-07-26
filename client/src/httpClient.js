@@ -32,6 +32,21 @@ httpClient.signUp = function(userInfo){
         })
 }
 
+httpClient.editUser = function(userInfo){
+    return this({ method: 'patch', url: '/api/users/me', data: userInfo })
+        .then((serverResponse) => {
+            console.log(serverResponse.data)
+            if(serverResponse.data.message === "SUCCESS") {
+                const token = serverResponse.data.payload
+                this.defaults.headers.common.token = this.setToken(token)
+                return jwtDecode(token)
+            }
+            else {
+                return false 
+            }
+        })
+}
+
 httpClient.logIn = function(credentials){
     return this({ method: 'post', url: '/api/users/authenticate', data: credentials })
         .then((serverResponse) => {
