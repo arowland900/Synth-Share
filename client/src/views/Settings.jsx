@@ -66,10 +66,8 @@ class Settings extends React.Component {
 						<input type="text" placeholder="Email" name="email" autoComplete="off" value={email} onChange={this.handleChange} />
 						<input type="password" placeholder="Password" name="password" autoComplete="off" value={password} onChange={this.handleChange} />
 						<button>Edit Info</button>
-					</form>
-                    <form >
                         <button onClick={this.onButtonClick.bind(this)}>Delete User</button>
-                    </form>
+					</form>
 				</div>
 			</div>
 		</div>

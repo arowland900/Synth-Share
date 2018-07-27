@@ -26,9 +26,6 @@ class App extends Component {
 		this.setState({ currentUser: null })
 	}
 
-	
-
-
 	render() {
 		return (
 			<div className="App container">
@@ -53,6 +50,9 @@ class App extends Component {
 							? <MySynths { ...routeProps }  />
 							: <Redirect to="/login" />
 					})} />
+					{/* <Route path='/synths/:id' render={((routeProps) => {
+						return <ShowSynth { ...routeProps } currentUser={this.state.currentUser}  />
+					})} /> */}
 					<Route path='/create' render={((routeProps) => {
 						return this.state.currentUser
 							? <Create {...routeProps} />
