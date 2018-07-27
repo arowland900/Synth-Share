@@ -1,19 +1,22 @@
 import React from 'react';
-import httpClient from '../httpClient';
+import httpClient from '../httpClient'
 import SynthForm from './SynthForm';
+import SynthView from './SynthView';
 import Keyboard from './Keyboard';
 
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)()
 var oscillator = audioCtx.createOscillator();
 
-class Create extends React.Component {
+class ShowSynth extends React.Component {
+
     state = {
         title: '',
-        attack: 20,
-        decay: 20,
-        sustain: 20,
-        release: 20,
-        waveform: 'sine'
+        attack: '',
+        decay: '',
+        sustain: '',
+        release: '',
+        waveform: '',
+        editEnabled: false
     };
 
     Note(freq) {
@@ -70,9 +73,22 @@ class Create extends React.Component {
         
     }
 
-    handleChange = (e) => {
+    componentDidMount() {
+        let id = this.props.match.params.id
+        httpClient({ method: 'get', url: `/api/synths/${id}` }).then((apiResponse) => {
+            console.log(apiResponse.data.payload)
+            this.setState({ ...apiResponse.data.payload })
+        })
+    }
+
+    handleChange = (evt) => {
+        evt.preventDefault();
+        this.setState({ [evt.target.name]: evt.target.value })
+    }
+
+    handleSubmit = (e) => {
         e.preventDefault();
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({ editEnabled: false })
     }
 
     handleClick = (e) => {
@@ -81,28 +97,24 @@ class Create extends React.Component {
         this.Note(freq)
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        httpClient({ method: 'post', url: '/api/synths', data: this.state })
-            .then(apiResponse => {
-                // change the following to redirect to the Synth show view instead of home:
-                this.props.history.push(`/`)
-            })
+    enableForm = () => {
+        this.setState({ editEnabled: true });
     }
 
     render(){
-
-        
+        let { editEnabled } = this.state; 
+        console.log(this.state)
         return (
-        <div>
-            <h1>Create a New Synth Here</h1>
-            <h4>WaveForm:</h4>
-            <SynthForm synth={this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />  
-            <Keyboard handleClick={this.handleClick}/>
+            <div>
+                <h4>WaveForm:</h4>
+                {!!editEnabled 
+                    ? <SynthForm synth={this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> 
+                    : <SynthView synth={this.state} enableForm={this.enableForm} />
+                }
+                <Keyboard handleClick={this.handleClick} />
         </div>
-
         )
     }
 }
 
-export default Create;
+export default ShowSynth

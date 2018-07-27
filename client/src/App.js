@@ -9,6 +9,7 @@ import Create from './views/Create';
 import LogOut from './views/LogOut';
 import Settings from './views/Settings';
 import MySynths from './views/MySynths';
+import ShowSynth from './views/ShowSynth';
 
 
 class App extends Component {
@@ -50,9 +51,9 @@ class App extends Component {
 							? <MySynths { ...routeProps }  />
 							: <Redirect to="/login" />
 					})} />
-					{/* <Route path='/synths/:id' render={((routeProps) => {
+					<Route path='/synths/:id' render={((routeProps) => {
 						return <ShowSynth { ...routeProps } currentUser={this.state.currentUser}  />
-					})} /> */}
+					})} />
 					<Route path='/create' render={((routeProps) => {
 						return this.state.currentUser
 							? <Create {...routeProps} />
