@@ -28,16 +28,16 @@ class Home extends React.Component {
         const result = this.state.synths.filter((s) => {
             return s.title.toLowerCase().includes(this.state.filter.toLowerCase())
         })
-
+ 
 
         return (
             <div className="Home">
                 <h1>Welcome to Synth Maker!</h1>
                 <div>
                     <div className="Synths">
-                    <input onChange={this.handleChange.bind(this)} className="input is-large" type="text" placeholder="Search for Synths Here" />
+                    <input onChange={this.handleChange.bind(this)} className="search" type="text" placeholder="Search for Synths Here" />
                     
-                        <ul className="menu-list">
+                        <ul className="list">
                         {result.map((synth, i) => {
                             let id = synth._id
                             return <li key={i}><Link to={`/synths/${id}`}>{synth.title}</Link></li>

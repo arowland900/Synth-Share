@@ -98,7 +98,7 @@ class ShowSynth extends React.Component {
         let { freq } = e.target.dataset;
         this.Note(freq)
     }
-
+ 
     handleKeyDown = (freq) => {
         this.Note(freq)
     }

@@ -35,7 +35,7 @@ class Keyboard extends React.Component {
         }, () => {
             window.addEventListener('keydown', this.state.keyDown)
             window.addEventListener('keyup', this.state.keyUp)
-        })
+        }) 
     }
 
     componentWillUnmount() {

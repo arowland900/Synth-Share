@@ -79,6 +79,14 @@ class Create extends React.Component {
         e.preventDefault();
         let { freq } = e.target.dataset;
         this.Note(freq)
+    } 
+
+    handleKeyDown = (freq) => {
+        this.Note(freq)
+    }
+
+    handleKeyUp = () => {
+        console.log("KEY RELEASED")
     }
 
     handleSubmit = (e) => {
@@ -98,7 +106,7 @@ class Create extends React.Component {
             <h1>Create a New Synth Here</h1>
             <h4>WaveForm:</h4>
             <SynthForm synth={this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />  
-            <Keyboard handleClick={this.handleClick}/>
+            <Keyboard handleClick={this.handleClick} onPlayNote={this.handleKeyDown} onReleaseNote={this.handleKeyUp}/>
         </div>
 
         )

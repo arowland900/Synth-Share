@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import {  } from 'semantic-ui-react'
+// import {  } from 'semantic-ui-react'
 import httpClient from './httpClient'
 import NavBar from './NavBar';      
 import Home from './views/Home'
@@ -49,7 +49,7 @@ class App extends Component {
 					})} />
 					<Route path='/mysynths' render={((routeProps) => {
 						return this.state.currentUser
-							? <MySynths { ...routeProps }  />
+							? <MySynths { ...routeProps } currentUser={this.state.currentUser}  />
 							: <Redirect to="/login" />
 					})} />
 					<Route path='/synths/:id' render={((routeProps) => {
