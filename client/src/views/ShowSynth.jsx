@@ -7,6 +7,13 @@ import Keyboard from './Keyboard';
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)()
 var oscillator = audioCtx.createOscillator();
 
+let options = [
+    { key: "sine", value: "sine", text: "sine" },
+    { key: "triangle", value: "triangle", text: "triangle" },
+    { key: "square", value: "square", text: "square" },
+    { key: "sawtooth", value: "sawtooth", text: "sawtooth" }
+];
+
 class ShowSynth extends React.Component {
 
     state = {
@@ -107,8 +114,7 @@ class ShowSynth extends React.Component {
         console.log("KEY RELEASED")
     }
 
-    enableForm = () => {
-        
+    enableForm = () => {   
         this.setState({ editEnabled: true });
     }
 
@@ -120,7 +126,7 @@ class ShowSynth extends React.Component {
         console.log(this.state)
         return (
             <div>
-                <h4>WaveForm:</h4>
+                {/* <h4>WaveForm:</h4> */}
                 {!!editEnabled 
                     ? <SynthForm synth={this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> 
                     : <SynthView synth={this.state} />

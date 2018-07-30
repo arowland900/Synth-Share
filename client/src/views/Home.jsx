@@ -1,6 +1,22 @@
 import React from 'react';
 import httpClient from '../httpClient'
 import { Link } from 'react-router-dom';
+import {
+    Button,
+    Container,
+    Divider,
+    Grid,
+    Header,
+    Form,
+    Icon,
+    Image,
+    List,
+    Menu,
+    Responsive,
+    Segment,
+    Sidebar,
+    Visibility,
+  } from 'semantic-ui-react'
 
 class Home extends React.Component {
 
@@ -31,11 +47,30 @@ class Home extends React.Component {
  
 
         return (
-            <div className="Home">
-                <h1>Welcome to Synth Maker!</h1>
-                <div>
+            <Container>
+                <h1>Browse Synths Here</h1>
+
+                <Container>
+                <Segment vertical>
+                    {/* <Grid container stackable verticalAlign='middle'> */}
+                    <Grid columns={3}>
+                        <Grid.Row>
+                        <Grid.Column>
+                        </Grid.Column>
+                        <Grid.Column width={5}>
+                        <Form>
+                            <Form.Field>
+                            {/* <label>First Name</label> */}
+                            <input onChange={this.handleChange.bind(this)} className="search" type="text" focus placeholder="Search for Synths Here" />
+                            {/* <input placeholder='First Name' /> */}
+                            </Form.Field>
+                        </Form>
+                        </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
+            </Container>
                     <div className="Synths">
-                    <input onChange={this.handleChange.bind(this)} className="search" type="text" placeholder="Search for Synths Here" />
                     
                         <ul className="list">
                         {result.map((synth, i) => {
@@ -45,8 +80,8 @@ class Home extends React.Component {
                         </ul>
                     
                     </div>
-                </div>
-            </div>
+                
+            </Container>
         )
     }
 }

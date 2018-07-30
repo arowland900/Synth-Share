@@ -72,7 +72,11 @@ class Create extends React.Component {
 
     handleChange = (e) => {
         e.preventDefault();
-        this.setState({ [e.target.name]: e.target.value });
+        if (e.target.name != undefined) {
+            this.setState({ [e.target.name]: e.target.value });
+        } else {
+            this.setState({ waveform: e.target.innerText });
+        }
     }
 
     handleClick = (e) => {
@@ -104,7 +108,7 @@ class Create extends React.Component {
         return (
         <div>
             <h1>Create a New Synth Here</h1>
-            <h4>WaveForm:</h4>
+            {/* <h4>WaveForm:</h4> */}
             <SynthForm synth={this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />  
             <Keyboard handleClick={this.handleClick} onPlayNote={this.handleKeyDown} onReleaseNote={this.handleKeyUp}/>
         </div>

@@ -11,6 +11,7 @@ import LogOut from './views/LogOut';
 import Settings from './views/Settings';
 import MySynths from './views/MySynths';
 import ShowSynth from './views/ShowSynth';
+import { Container } from 'semantic-ui-react';
 
 
 class App extends Component {
@@ -32,36 +33,38 @@ class App extends Component {
 		return (
 			<div className="App container">
 				<NavBar currentUser={this.state.currentUser} />
-				<Switch>
-					<Route path='/signup' render={(routeProps) => {
-						return <SignUp { ...routeProps } onSignUpSuccess={this.onAuthSuccess.bind(this)} />
-					}} />
-					<Route path='/login' render={(routeProps) => {
-						return <LogIn { ...routeProps } onLogInSuccess={this.onAuthSuccess.bind(this)} />
-					}} />
-					<Route path='/logout' render={((routeProps) => {
-						return <LogOut { ...routeProps } onLogOutSuccess={this.onLogOutSuccess.bind(this)} />
-					})} />
-					<Route path='/settings' render={((routeProps) => {
-						return this.state.currentUser
-							? <Settings { ...routeProps } onDeleteSuccess={this.onLogOutSuccess.bind(this)} />
-							: <Redirect to="/login" />
-					})} />
-					<Route path='/mysynths' render={((routeProps) => {
-						return this.state.currentUser
-							? <MySynths { ...routeProps } currentUser={this.state.currentUser}  />
-							: <Redirect to="/login" />
-					})} />
-					<Route path='/synths/:id' render={((routeProps) => {
-						return <ShowSynth { ...routeProps } currentUser={this.state.currentUser}  />
-					})} />
-					<Route path='/create' render={((routeProps) => {
-						return this.state.currentUser
-							? <Create {...routeProps} />
-							: <Redirect to="/login" />
-					})} />
-					<Route exact path='/' component={Home} />
- 				</Switch>
+				<Container>
+					<Switch>
+						<Route path='/signup' render={(routeProps) => {
+							return <SignUp { ...routeProps } onSignUpSuccess={this.onAuthSuccess.bind(this)} />
+						}} />
+						<Route path='/login' render={(routeProps) => {
+							return <LogIn { ...routeProps } onLogInSuccess={this.onAuthSuccess.bind(this)} />
+						}} />
+						<Route path='/logout' render={((routeProps) => {
+							return <LogOut { ...routeProps } onLogOutSuccess={this.onLogOutSuccess.bind(this)} />
+						})} />
+						<Route path='/settings' render={((routeProps) => {
+							return this.state.currentUser
+								? <Settings { ...routeProps } onDeleteSuccess={this.onLogOutSuccess.bind(this)} />
+								: <Redirect to="/login" />
+						})} />
+						<Route path='/mysynths' render={((routeProps) => {
+							return this.state.currentUser
+								? <MySynths { ...routeProps } currentUser={this.state.currentUser}  />
+								: <Redirect to="/login" />
+						})} />
+						<Route path='/synths/:id' render={((routeProps) => {
+							return <ShowSynth { ...routeProps } currentUser={this.state.currentUser}  />
+						})} />
+						<Route path='/create' render={((routeProps) => {
+							return this.state.currentUser
+								? <Create {...routeProps} />
+								: <Redirect to="/login" />
+						})} />
+						<Route exact path='/' component={Home} />
+					</Switch>
+				</Container>
 				
 			</div>
 		);

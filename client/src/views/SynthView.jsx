@@ -1,4 +1,12 @@
 import React from 'react';
+import { Segment, Form, Button, Input, Select} from 'semantic-ui-react'
+
+let options = [
+    { key: "sine", value: "sine", text: "sine" },
+    { key: "triangle", value: "triangle", text: "triangle" },
+    { key: "square", value: "square", text: "square" },
+    { key: "sawtooth", value: "sawtooth", text: "sawtooth" }
+];
 
 const SynthView = (props) => {
     let { attack, decay, sustain, release, waveform, title } = props.synth;
