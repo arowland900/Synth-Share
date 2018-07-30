@@ -2,7 +2,6 @@ import React from 'react';
 
 const SynthView = (props) => {
     let { attack, decay, sustain, release, waveform, title } = props.synth;
-    let { enableForm } = props;
     return (
         <div className="envelope">
             <h1>{title}</h1>
@@ -39,7 +38,6 @@ const SynthView = (props) => {
                 value={release} 
                 step="1"
             />
-            <button onClick={enableForm}>Edit</button>
         </div>
     )
 }

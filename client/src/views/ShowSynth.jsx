@@ -88,7 +88,9 @@ class ShowSynth extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.setState({ editEnabled: false })
+        httpClient.editSynth(this.state._id, this.state).then(updatedSynth => {
+            this.setState({ editEnabled: false })
+        })
     }
 
     handleClick = (e) => {
@@ -97,21 +99,34 @@ class ShowSynth extends React.Component {
         this.Note(freq)
     }
 
+    handleKeyDown = (freq) => {
+        this.Note(freq)
+    }
+
+    handleKeyUp = () => {
+        console.log("KEY RELEASED")
+    }
+
     enableForm = () => {
+        
         this.setState({ editEnabled: true });
     }
 
     render(){
         let { editEnabled } = this.state; 
+        let { currentUser } = this.props
+        console.log(currentUser, this.state)
+        // console.log(this.state)
         console.log(this.state)
         return (
             <div>
                 <h4>WaveForm:</h4>
                 {!!editEnabled 
                     ? <SynthForm synth={this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> 
-                    : <SynthView synth={this.state} enableForm={this.enableForm} />
+                    : <SynthView synth={this.state} />
                 }
-                <Keyboard handleClick={this.handleClick} />
+                {currentUser && currentUser._id === this.state._by && <button onClick={this.enableForm}>Edit</button>}
+                <Keyboard handleClick={this.handleClick} onPlayNote={this.handleKeyDown} onReleaseNote={this.handleKeyUp} />
         </div>
         )
     }

@@ -52,6 +52,19 @@ httpClient.editUser = function(userInfo){
             }
         })
 }
+httpClient.editSynth = function(id, synthData){
+    return this({ method: 'patch', url: `/api/synths/${id}`, data: synthData })
+        .then((serverResponse) => {
+            console.log(serverResponse.data)
+            if(serverResponse.data.message === "SUCCESS") {
+                const updatedSynth = serverResponse.data.payload
+                return updatedSynth
+            }
+            else {
+                return false 
+            }
+        })
+}
 
 httpClient.delete = function(userInfo){
     return this({ method: 'delete', url: '/api/users/me', data: userInfo })

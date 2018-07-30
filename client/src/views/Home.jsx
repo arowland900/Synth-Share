@@ -26,7 +26,7 @@ class Home extends React.Component {
     render(){
 
         const result = this.state.synths.filter((s) => {
-            return s.waveform.toLowerCase().includes(this.state.filter.toLowerCase())
+            return s.title.toLowerCase().includes(this.state.filter.toLowerCase())
         })
 
 
@@ -40,17 +40,12 @@ class Home extends React.Component {
                         <ul className="menu-list">
                         {result.map((synth, i) => {
                             let id = synth._id
-                            return ( 
-                            <div>
-                            <li key={i}><Link to={`/synths/${id}`}>{synth.waveform}</Link></li>
-                            </div>
-                            )
+                            return <li key={i}><Link to={`/synths/${id}`}>{synth.title}</Link></li>
                         })}
                         </ul>
                     
                     </div>
                 </div>
-                <h3>here there should be a list of all the synths made thus far (see wdi-react-book-list)</h3>
             </div>
         )
     }
