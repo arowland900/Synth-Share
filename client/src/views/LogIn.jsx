@@ -1,5 +1,6 @@
 import React from 'react'
 import httpClient from '../httpClient'
+import { Button, Form, Container } from 'semantic-ui-react'
 
 class LogIn extends React.Component {
 
@@ -31,21 +32,26 @@ class LogIn extends React.Component {
     render() {
         const { email, password } = this.state.fields
         return (
-            <div className="LogIn">
-                <div className="row">
-                    <div className="column column-33 column-offset-33">
-                        <h1>Log In</h1>
-                        <form
-                            onChange={this.onInputChange.bind(this)}
-                            onSubmit={this.onFormSubmit.bind(this)}
-                        >
-                            <input type="text" placeholder="Email" name="email" autoComplete="off" value={email} />
-                            <input type="password" placeholder="Password" name="password" autoComplete="off" value={password} />
-                            <button>Log In</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <Container  >
+                <Form
+                    onChange={this.onInputChange.bind(this)}
+                    onSubmit={this.onFormSubmit.bind(this)}
+                >
+                    <Form.Field>
+                    {/* <label>First Name</label> */}
+                    <input type="text" placeholder="Email" name="email" autoComplete="off" value={email} />
+                    </Form.Field>
+                    <Form.Field>
+                    {/* <label>Last Name</label> */}
+                    <input type="password" placeholder="Password" name="password" autoComplete="off" value={password} />
+                    </Form.Field>
+                    <Form.Field>
+                    
+                    </Form.Field>
+                    <Button type='submit'>Log In</Button>
+                </Form>
+            </Container>
+
         )
     }
 }

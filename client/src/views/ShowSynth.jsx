@@ -3,7 +3,8 @@ import httpClient from '../httpClient'
 import SynthForm from './SynthForm';
 import SynthView from './SynthView';
 import Keyboard from './Keyboard';
-
+import { Button } from 'semantic-ui-react'
+ 
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)()
 var oscillator = audioCtx.createOscillator();
 
@@ -129,9 +130,9 @@ class ShowSynth extends React.Component {
                 {/* <h4>WaveForm:</h4> */}
                 {!!editEnabled 
                     ? <SynthForm synth={this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit} /> 
-                    : <SynthView synth={this.state} />
+                    : <SynthView synth={this.state} currentUser={currentUser} />
                 }
-                {currentUser && currentUser._id === this.state._by && <button onClick={this.enableForm}>Edit</button>}
+                {currentUser && currentUser._id === this.state._by && <Button className="button" onClick={this.enableForm}>Edit</Button>}
                 <Keyboard handleClick={this.handleClick} onPlayNote={this.handleKeyDown} onReleaseNote={this.handleKeyUp} />
         </div>
         )

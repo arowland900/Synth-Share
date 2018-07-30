@@ -39,4 +39,8 @@ h1 {
   background-color: aliceblue;
 }
 
+.button{
+  margin: auto
+}
+
 /* <div class="ui secondary pointing menu navbar"> */
