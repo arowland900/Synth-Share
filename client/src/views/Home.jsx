@@ -51,25 +51,25 @@ class Home extends React.Component {
                 <h1>Browse Synths Here</h1>
 
                 <Container>
-                <Segment vertical>
-                    {/* <Grid container stackable verticalAlign='middle'> */}
-                    <Grid columns={3}>
-                        <Grid.Row>
-                        <Grid.Column>
-                        </Grid.Column>
-                        <Grid.Column width={5}>
-                        <Form>
-                            <Form.Field>
-                            {/* <label>First Name</label> */}
-                            <input onChange={this.handleChange.bind(this)} className="search" type="text" focus placeholder="Search for Synths Here" />
-                            {/* <input placeholder='First Name' /> */}
-                            </Form.Field>
-                        </Form>
-                        </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
-                </Segment>
-            </Container>
+                    <Segment vertical>
+                        {/* <Grid container stackable verticalAlign='middle'> */}
+                        <Grid columns={3}>
+                            <Grid.Row>
+                            <Grid.Column>
+                            </Grid.Column>
+                            <Grid.Column width={5}>
+                            <Form>
+                                <Form.Field>
+                                {/* <label>First Name</label> */}
+                                <input onChange={this.handleChange.bind(this)} className="search" type="text" focus placeholder="Search for Synths Here" />
+                                {/* <input placeholder='First Name' /> */}
+                                </Form.Field>
+                            </Form>
+                            </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
+                    </Segment>
+                </Container>
                     <div className="Synths">
                     
                         <ul className="list">
