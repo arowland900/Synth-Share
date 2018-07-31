@@ -89,9 +89,9 @@ class ShowSynth extends React.Component {
         })
     }
 
-    handleChange = (evt) => {
+    handleChange = (evt, semanticUIEvent) => {
         evt.preventDefault();
-        this.setState({ [evt.target.name]: evt.target.value })
+        this.setState({ [semanticUIEvent.name]: semanticUIEvent.value })
     }
 
     handleSubmit = (e) => {
@@ -124,7 +124,6 @@ class ShowSynth extends React.Component {
         let { currentUser } = this.props
         console.log(currentUser, this.state)
         // console.log(this.state)
-        console.log(this.state)
         return (
             <div>
                 {/* <h4>WaveForm:</h4> */}

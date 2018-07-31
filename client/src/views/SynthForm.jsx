@@ -5,14 +5,13 @@ const SynthForm = (props) => {
     let { title, attack, decay, sustain, release, waveform } = props.synth;
     let { handleChange, handleSubmit } = props;
     let options = [
-        { key: "sine", value: "sine", text: "sine" },
-        { key: "triangle", value: "triangle", text: "triangle" },
-        { key: "square", value: "square", text: "square" },
-        { key: "sawtooth", value: "sawtooth", text: "sawtooth" }
+        { key: "sine", value: "sine", text: "Sine" },
+        { key: "triangle", value: "triangle", text: "Triangle" },
+        { key: "square", value: "square", text: "Square" },
+        { key: "sawtooth", value: "sawtooth", text: "Sawtooth" }
     ];
 
     return (
-
         <Segment inverted>
             {/* <Form inverted> */}
             {/* <Form.Group widths='equal'> */}
@@ -22,7 +21,7 @@ const SynthForm = (props) => {
             {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
             {/* <Button type='submit'>Submit</Button> */}
             {/* </Form> */}
- 
+           
             <Form inverted onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Input  
@@ -33,18 +32,19 @@ const SynthForm = (props) => {
                         onChange={handleChange}
                         width={6}
                     />
-                    <Select placeholder="Waveform" options={options} value={waveform} onChange={handleChange} name="waveform" width={4}/>
-                    {/* <select name="waveform" id="waveform-select" value={waveform} onChange={handleChange}>
-                        <option value="sine">Sine</option>
-                        <option value="triangle">Triangle</option>
-                        <option value="square">Square</option>
-                        <option value="sawtooth">Sawtooth</option>
-                    </select> */}
+                    <Form.Input
+                        placeholder="Waveform"
+                        control={Select}
+                        options={options}
+                        onChange={handleChange}
+                        name="waveform"
+                        width={4}
+                    />
                 </Form.Group>
 
                 <div className="envelope">
                     Attack:
-                    <Input 
+                    <Form.Input 
                         className="attack" 
                         type="range"
                         name="attack"
@@ -53,7 +53,7 @@ const SynthForm = (props) => {
                         onChange={handleChange}
                     />
                     Decay:
-                    <Input 
+                    <Form.Input 
                         className="decay" 
                         type="range"
                         name="decay"
@@ -61,8 +61,8 @@ const SynthForm = (props) => {
                         step="1"
                         onChange={handleChange}
                     />
-                    Sustain:
-                    <Input 
+                    {/* Sustain:
+                    <Form.Input 
                         className="sustain" 
                         type="range"
                         name="sustain"
@@ -71,14 +71,14 @@ const SynthForm = (props) => {
                         onChange={handleChange}
                     />
                     Release:
-                    <Input 
+                    <Form.Input 
                         className="release" 
                         type="range"
                         name="release"
                         value={release} 
                         step="1"
                         onChange={handleChange}
-                    />
+                    /> */}
                 </div>
                 <Button type="submit">Save Patch</Button>
             </Form>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Form, Button, Input, Select} from 'semantic-ui-react'
+import { Segment, Form, Button, Input, Grid} from 'semantic-ui-react'
 
 
 
@@ -24,8 +24,27 @@ const SynthView = (props) => {
             {/* </Form> */}
  
             <Form inverted >
-                <h3>{title}</h3>
-                <h3 className="ui right aligned">waveform: {waveform}</h3>
+            <Grid columns='equal'>
+                <Grid.Column width={4}>
+                        <h3>{title}</h3>
+                </Grid.Column>
+                <Grid.Column width={1}>
+                </Grid.Column>
+                <Grid.Column width={4}>
+                    <h3>waveform: {waveform}</h3>
+                </Grid.Column>
+                <Grid.Column width={2}>
+                </Grid.Column>
+            </Grid>
+                
+                            {/* {<h3>{title}</h3>}
+                            width={6}
+                        
+                            {<h3 className="ui right aligned">waveform: {waveform}</h3>}
+                            width={4} */}
+                    
+                {/* <h3>{title}</h3>
+                <h3 className="ui right aligned">waveform: {waveform}</h3> */}
                 {/* <Form.Group>
                     <Form.title
                         name="title" 
@@ -45,7 +64,7 @@ const SynthView = (props) => {
 
                 <div className="envelope">
                     Attack:
-                    <Input 
+                    <Form.Input 
                         className="attack" 
                         type="range"
                         name="attack"
@@ -53,14 +72,14 @@ const SynthView = (props) => {
                         step="1"
                     />
                     Decay:
-                    <Input 
+                    <Form.Input 
                         className="decay" 
                         type="range"
                         name="decay"
                         value={decay} 
                         step="1"
                     />
-                    Sustain:
+                    {/* Sustain:
                     <Input 
                         className="sustain" 
                         type="range"
@@ -75,7 +94,7 @@ const SynthView = (props) => {
                         name="release"
                         value={release} 
                         step="1"
-                    />
+                    /> */}
                 </div>
                 {/* {currentUser && currentUser._id === this.state._by && <Button className="button" onClick={this.enableForm}>Edit</Button>} */}
             </Form>

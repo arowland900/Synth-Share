@@ -38,7 +38,6 @@ class MySynths extends React.Component {
 
         return (
             <div className="Home">
-                <h1>Welcome to Synth Maker!</h1>
                 <div>
                     <div className="Synths center">
                     

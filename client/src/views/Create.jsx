@@ -70,13 +70,18 @@ class Create extends React.Component {
         
     }
 
-    handleChange = (e) => {
-        e.preventDefault();
-        if (e.target.name != undefined) {
-            this.setState({ [e.target.name]: e.target.value });
-        } else {
-            this.setState({ waveform: e.target.innerText });
-        }
+    // handleChange = (e) => {
+    //     e.preventDefault();
+    //     if (e.target.name != undefined) {
+    //         this.setState({ [e.target.name]: e.target.value });
+    //     } else {
+    //         this.setState({ waveform: e.target.innerText });
+    //     }
+    // }
+
+    handleChange = (evt, semanticUIEvent) => {
+        evt.preventDefault();
+        this.setState({ [semanticUIEvent.name]: semanticUIEvent.value })
     }
 
     handleClick = (e) => {

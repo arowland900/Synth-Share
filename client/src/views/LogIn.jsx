@@ -33,6 +33,7 @@ class LogIn extends React.Component {
         const { email, password } = this.state.fields
         return (
             <Container  >
+                <h1>Log In</h1>
                 <Form
                     onChange={this.onInputChange.bind(this)}
                     onSubmit={this.onFormSubmit.bind(this)}
